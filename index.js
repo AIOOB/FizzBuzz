@@ -6,6 +6,9 @@ for (let num = 1; num < 100; num++) {
     if (num % 5 == 0) {
         output.push("Buzz");
     }
+    if (num % 7 == 0) {
+        output.push("Bang")
+    }
     if (output.length < 1) {
         output.push(num);
     }
