@@ -20,6 +20,9 @@ for (let num = 1; num < 200; num++) {
             output.unshift("Fezz");
         }
     }
+    if (num % 17 == 0) {
+        output.reverse();
+    }
     if (output.length < 1) {
         output.push(num);
     }
