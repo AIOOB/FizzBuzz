@@ -34,5 +34,5 @@ rl.question("What is the maximum number you would like: ", (max) => {
         console.log(output.join(''));
     }
 
-    rl.close;
+    rl.close();
 });
