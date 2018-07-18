@@ -3,31 +3,30 @@ const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
+
+const rules = [];
+for (let i = 2; i < process.argv.length; i++) {
+    const element = process.argv[i];
+    const rule = element.split(":");
+    const number = parseInt(rule[0]);
+    if (rule.length != 2 || number == NaN) {
+        console.log("FizzBuzz takes a space seperated list of divisor:text pairs.");
+        process.exit(1);
+    }
+    rules.push({
+        divisor: number,
+        text: rule[1],
+    });
+}
+
 rl.question("What is the maximum number you would like: ", (max) => {
     for (let num = 1; num < max; num++) {
         const output = [];
-        if (num % 3 == 0) {
-            output.push("Fizz");
-        }
-        if (num % 5 == 0) {
-            output.push("Buzz");
-        }
-        if (num % 7 == 0) {
-            output.push("Bang");
-        }
-        if (num % 11 == 0) {
-            output.length = 0
-            output.push("Bong");
-        }
-        if (num % 13 == 0) {
-            if (num % 3 == 0) {
-                output.splice(1, 0, "Fezz");
-            } else {
-                output.unshift("Fezz");
+        for (let i = 0; i < rules.length; i++) {
+            const rule = rules[i];
+            if (num % rule.divisor == 0) {
+                output.push(rule.text);
             }
-        }
-        if (num % 17 == 0) {
-            output.reverse();
         }
         if (output.length < 1) {
             output.push(num);
